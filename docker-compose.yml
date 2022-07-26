@@ -5,9 +5,9 @@ services:
     image: sonarqube:9.0.1-community
     privileged: true
     expose:
-      - 9019
+      - 9017
     ports:
-      - "9019:9000"
+      - "9017:9000"
     networks:
       - sonarnet
     environment:
@@ -32,7 +32,7 @@ services:
       - postgresql_data:/var/lib/postgresql/data
   java:
     image: openjdk:8
-    container_name: "myapp2"
+    container_name: "myapp3"
     ports:
       - 8096:8080
     environment:
@@ -41,7 +41,7 @@ services:
       - "/var/lib/jenkins/workspace/task1-dockerfile/target/docker-java-app-example.jar:/docker-java-app-example.jar"
     command: ['java', '-jar', 'docker-java-app-example.jar']
   sonarscanner:
-    container_name: sonarscanner
+    container_name: sonarscanner1
     image: newtmitch/sonar-scanner
     networks:
       - sonarnet
